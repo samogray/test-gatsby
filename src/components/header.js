@@ -1,13 +1,15 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Nav from './nav'
+import css from './style.module.scss'
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
       marginBottom: `1.45rem`,
     }}
+    className={`${css.test} test`}
   >
     <div
       style={{
@@ -16,11 +18,10 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <h1 style={{ margin: 0 }} className={css.test__inner}>
         <Link
-          to="/"
+          to='/'
           style={{
-            color: `white`,
             textDecoration: `none`,
           }}
         >
@@ -28,6 +29,7 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
     </div>
+    <Nav />
   </header>
 )
 
