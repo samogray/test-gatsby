@@ -14,6 +14,7 @@ const Nav = () => (
       <ListLink to="/about/">About</ListLink>
       <ListLink to="/page-2/">page-2</ListLink>
       <ListLink to="/contact/">Contact</ListLink>
+      {/* <ListLink to="/data-from-markdown/">Markdown</ListLink> */}
     </ul>
   </nav>
 )

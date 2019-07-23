@@ -1,12 +1,27 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Samogray!!`,
+    title: `Puper Blog`,
     description: `This is description my best blog`,
     author: `samogray`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/articles/`,
+      },
+    }, 
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {

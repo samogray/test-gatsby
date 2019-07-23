@@ -624,3 +624,7 @@ pre tt:after {
 .test {
   background-color: red;
 }
+
+.my-image {
+  padding-top: 40%;
+}

@@ -1,34 +1,75 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import { StaticQuery, graphql } from "gatsby"
+import { css } from "@emotion/core"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <a href="mailto:me@example.com">me@example.com</a>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <p>
-      What do I like to do? Lots of course but definitely enjoy building
-      websites.
-    </p>
-    <Link to="/page-2/">Go to page 2</Link>
+  <StaticQuery
+    query={graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+        allMarkdownRemark {
+          nodes {
+            excerpt
+            frontmatter {
+              title
+              date
+              slug
+              image {
+                childImageSharp {
+                  fluid(fit: CONTAIN, grayscale: true) {
+                    src
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const {site, allMarkdownRemark} = data
+      return(
+      <Layout>
+        <SEO title={site.siteMetadata.title} />
+        <h1>Weblium blog</h1>
+        <p>This is puper blog!</p>
+        <p>Weblium blog</p>
 
-    <h1>Amazing Pandas Eating Things</h1>
-    <div>
-      <img
-        src="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
-        alt="Group of pandas eating bamboo"
-      />
-    </div>
-  </Layout>
+        <h2>Articles</h2>
+        {allMarkdownRemark.nodes.map((node) => <article
+          css={css`
+            display: inline-block;
+            width: 360px;
+            margin: 24px;
+            text-align: center;
+            padding: 16px;
+            border: 2px solid #cdcdcd;
+          `}
+        >
+          <Link to={node.frontmatter.slug}>
+            <h3>{node.frontmatter.title}</h3>
+          </Link>
+          <Img
+            fluid={node.frontmatter.image.childImageSharp.fluid}
+            alt="headshot"
+            objectFit="contain"
+            className="my-image"
+            imgStyle={{ objectFit: 'contain' }}
+          />
+          <small>{node.frontmatter.date}</small>
+          <p>{node.excerpt}</p>
+        </article>)}
+      </Layout>
+    )}}
+  />
 )
 
 export default IndexPage
