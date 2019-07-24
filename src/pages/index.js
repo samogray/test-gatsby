@@ -24,7 +24,7 @@ const IndexPage = () => (
               slug
               image {
                 childImageSharp {
-                  fluid(fit: CONTAIN, grayscale: true) {
+                  fluid(fit: CONTAIN) {
                     src
                   }
                 }
