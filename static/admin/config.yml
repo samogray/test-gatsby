@@ -4,12 +4,12 @@ backend:
   repo: samogray/test-gatsby
 
 media_folder: src/images
-public_folder: src/images
+public_folder: /img
 
 collections:
   - name: 'team'
-    label: 'Posts'
-    folder: 'src/articles'
+    label: 'Team'
+    folder: 'src/team'
     create: true
     slug: '{{slug}}'
     fields:
