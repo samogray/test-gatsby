@@ -3,13 +3,13 @@ backend:
   branch: master
   repo: samogray/test-gatsby
 
-media_folder: static/img
+media_folder: src/articles
 public_folder: /img
 
 collections:
   - name: 'team'
-    label: 'Team'
-    folder: 'src/team'
+    label: 'Posts'
+    folder: 'src/articles'
     create: true
     slug: '{{slug}}'
     fields:
