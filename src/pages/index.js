@@ -39,7 +39,7 @@ const IndexPage = () => (
       return(
       <Layout>
         <SEO title={site.siteMetadata.title} />
-        <h1>Weblium blog</h1>
+        <h1>Weblium blog!!!🤖</h1>
         <p>This is puper blog!</p>
         <p>Weblium blog</p>
 
