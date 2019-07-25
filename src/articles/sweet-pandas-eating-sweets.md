@@ -3,7 +3,7 @@ title: "Sweet Pandas Eating Sweets"
 date: "2017-08-10"
 slug: "/pandas-eating-sweet"
 author: "Samogray Gorpyna"
-image: gatsby-astronaut.png
+image: ../images/gatsby-astronaut.png
 ---
 
 Pandas are really sweet.
