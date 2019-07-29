@@ -18,13 +18,17 @@ const IndexPage = () => (
         allMarkdownRemark {
           nodes {
             excerpt
-            frontmatter {
-              title
-              date
+            fields {
               slug
+            }
+            frontmatter {
+              slug
+              date
+              author
+              title
               image {
                 childImageSharp {
-                  fluid(fit: CONTAIN) {
+                  fluid {
                     src
                   }
                 }
@@ -36,6 +40,7 @@ const IndexPage = () => (
     `}
     render={data => {
       const {site, allMarkdownRemark} = data
+      
       return(
       <Layout>
         <SEO title={site.siteMetadata.title} />
@@ -44,7 +49,7 @@ const IndexPage = () => (
         <p>Weblium blog</p>
 
         <h2>Articles</h2>
-        {allMarkdownRemark.nodes.map((node) => <article
+        {allMarkdownRemark.nodes.map((node) => console.log(node.fields.slug) || <article
           css={css`
             display: inline-block;
             width: 360px;
@@ -54,7 +59,7 @@ const IndexPage = () => (
             border: 2px solid #cdcdcd;
           `}
         >
-          <Link to={node.frontmatter.slug}>
+          <Link to={node.fields.slug}>
             <h3>{node.frontmatter.title}</h3>
           </Link>
           <Img
