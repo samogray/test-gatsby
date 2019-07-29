@@ -3,8 +3,8 @@ backend:
   branch: master
   repo: samogray/test-gatsby
 
-media_folder: src/images
-public_folder: src/images
+media_folder: static/img
+public_folder: /img
 
 collections:
   - name: 'post'

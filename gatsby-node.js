@@ -5,6 +5,7 @@
  */
 
 // You can delete this file if you're not using it
+const { createFilePath } = require('gatsby-source-filesystem')
 
 const path = require(`path`)
 
@@ -61,4 +62,21 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
   })
+}
+
+const createNodeFieldMarkdownRemark = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+}
+
+exports.onCreateNode = nodeContext => {
+  createNodeFieldMarkdownRemark(nodeContext)
 }
