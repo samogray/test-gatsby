@@ -19,16 +19,15 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     query loadPagesQuery {
       allMarkdownRemark {
-        edges {
-          node {
-            id
-            html
-            frontmatter {
-              slug
-              title
-              date(formatString: "")
-              author
-            }
+        nodes {
+          fields {
+            slug
+          }
+          html
+          frontmatter {
+            author
+            date
+            title
           }
         }
       }
@@ -38,11 +37,11 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
     // Create blog post pages.
-    result.data.allMarkdownRemark.edges.forEach(({node: post}) => {
-      const {html, frontmatter} = post
-      const {title, author, date, slug} = frontmatter
+    result.data.allMarkdownRemark.nodes.forEach((node) => {
+      const {html='', frontmatter, fields} = node
+      const {title, author, date} = frontmatter
+      const {slug} = fields
       createPage({
-        // Path for this page — required
         path: `${slug}`,
         component: blogPostTemplate,
         context: {
