@@ -5,8 +5,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const TemplateArticle = ({pageContext}) =>  {
-  const {html, title, author, date} = pageContext
-  console.log(html)
+  const {html, title, author, date, htmlAst} = pageContext
+  console.log('htmlAst', htmlAst)
   return (
   <Layout>
     <SEO title="Page template" />

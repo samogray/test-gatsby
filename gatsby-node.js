@@ -24,6 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
             slug
           }
           html
+          htmlAst
           frontmatter {
             author
             date
@@ -38,7 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
     // Create blog post pages.
     result.data.allMarkdownRemark.nodes.forEach((node) => {
-      const {html='', frontmatter, fields} = node
+      const {html='', frontmatter, fields, htmlAst} = node
       const {title, author, date} = frontmatter
       const {slug} = fields
       createPage({
@@ -46,6 +47,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: blogPostTemplate,
         context: {
           html,
+          htmlAst,
           title,
           author,
           date,
